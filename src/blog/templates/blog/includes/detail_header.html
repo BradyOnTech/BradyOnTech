@@ -1,0 +1,72 @@
+{% load static %}
+<header class="detail-header" id="detail-header">
+    <a href="/" class="header-link">
+        <h1 class="bot-header">B</h1><img class="robot" src='{% static "img/robot-color.svg" %}'>
+        <h1 class="bot-header">o</h1><img class="robot" src='{% static "img/robot-color.svg" %}'>
+        <h1 class="bot-header">T</h1>
+    </a>
+
+    <div class="detail-header-box">
+        <ul id="detail-nav">
+            <a href="/blog/archive" class="animated-link"><li>archive</li></a>
+            <a href="/resources" class="animated-link"><li>resources</li></a>
+            <a href="/about" class="animated-link"><li>about</li></a>
+        </ul>
+        
+        <span id="detail-sitename"><a href="/" style="text-decoration: none; color: black;">BradyOnTech</a></span>
+
+        <!--Search Bar-->
+        <form id="detail-search-form" action="/search" method="GET">
+            <input type="text" placeholder="Search..." name="q">
+            <span type="submit" id="search-icon-container">
+                <button type="submit" id="submit-button">
+                    <ion-icon name="search" size="small" id="search-btn"></ion-icon>
+                </button>
+            </span>
+        </form>
+    </div>
+
+    <div class="mobile-header-box">
+        <span id="detail-sitename"><a href="/" style="text-decoration: none; color: black;">BradyOnTech</a></span>
+        <span id="detail-hamburger" onclick="openNav()"><ion-icon name="menu"></ion-icon></span>
+
+        <!-- Mobile Overlay -->
+        <div id="overlay-nav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">        
+                <form id="search-form" action="/search" method="GET">
+                    <input type="text" placeholder="Search..." name="q">
+                    <span type="submit" id="search-icon-container">
+                        <button type="submit" id="submit-button">
+                            <ion-icon name="search" size="small" id="search-btn"></ion-icon>
+                        </button>
+                    </span>
+                </form>
+
+                <!-- Navigation -->
+                <ul id="mobile-overlay-navigation">
+                    <h3 class="sidebar-header">Navigation</h3>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/blog/archive">Archive</a></li>
+                    <li><a href="/resources">Resources</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+
+                <div class="recent-posts">
+                    <h3 class="sidebar-header">Recent Posts</h3>
+                    {% for r in recent_posts %}
+                        <a href="{{ r.get_absolute_url }}" class="sidebar-link">{{ r.title }}</a>
+                    {% endfor %}
+                </div>
+                
+                <div class="popular-posts">
+                    <h3 class="sidebar-header">Most Popular</h3>
+                    {% for p in most_popular %}
+                        <a href="{{ p.get_absolute_url }}" class="sidebar-link">{{ p.title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>

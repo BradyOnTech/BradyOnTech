@@ -1,0 +1,64 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech - {{ post.title }}{% endblock %}
+
+{% block content %}
+    {% include "blog/includes/detail_header.html" %}
+    <div class="detail-container">
+        <div class="detail-content">
+            <div id="search-header">
+                <span style="display: inline;">Results for: </span><span id="search-query">"{{ query }}"</span>
+            </div>
+
+            <div>
+                {% for result in page_obj.object_list %}
+                    <div class="content" style="margin-left: 5vw;">
+                        <h2 class="post-title"><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></h2>
+                        <h4 class="published">Published on: {{ result.object.created }}</h4>
+                        <p class="post-content">
+                            {{ result.object.body|safe|truncatewords:60|linebreaks }}
+                        </p>
+                        <a href="{{ result.object.get_absolute_url }}" class="read-more">Read More...</a>
+                    </div>
+                {% empty %}
+                    <div id="search-no-results">
+                        <p>Sorry! No results found with that keyword.</p>
+                        <p>Please feel free search around the site more or contact me by any of the social medias located in the footer!</p>
+                    </div>
+                {% endfor %}
+
+                {% if page.has_previous or page.has_next %}
+                    <div>
+                        {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                        |
+                        {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="desktop-sidebar" style="margin-top: 13rem;">
+            <div class="popular-posts">
+                <h3 class="sidebar-header">Most Popular</h3>
+                {% for p in most_popular %}
+                    <a href="{{ p.get_absolute_url }}" class="sidebar-link">
+                        {{ p.title }}
+                    </a>
+            {% endfor %}
+            </div>
+    
+            <div class="popular-posts">
+                <h3 class="sidebar-header">Recent Posts</h3>
+                {% for r in recent_posts %}
+                    <a href="{{ r.get_absolute_url }}" class="sidebar-link">
+                        {{ r.title }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+    
+        {% include "blog/includes/footer.html" %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech - {{ post.title }}{% endblock %}
+
+{% block content %}
+{% include "blog/includes/detail_header.html" %}
+
+<div class="error-page">
+    <span id="error-header">Whoops!</span>
+    <p>Well, this is embarrassing...</p>
+    <div id="robot-error-container">
+        <img id="error-moving-robot" class="robot" src='{% static "img/robot-color.svg" %}'>
+    </div>
+    <div>We're getting a 500 error, which means we might be experiencing some technical difficulties. We will be back up and running as soon as we can!</div>
+    <p>Feel free to reach out to me at any of the social medias in the footer if you would like to let me know about this or if you need any help!</p>
+</div>
+
+{% include "blog/includes/footer.html" %}
+{% endblock %}

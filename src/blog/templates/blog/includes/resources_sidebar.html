@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="sidebar">
+        <div class="desktop-sidebar">
+
+            <div class="related-posts">
+                <h3 class="sidebar-header">Series</h3>
+                {% for s in series %}
+                    <a href="{{ s.get_absolute_url }}" class="sidebar-link">{{ s.name }}</a>
+                {% endfor %}
+            </div>
+
+            <div class="popular-posts">
+                <h3 class="sidebar-header">Most Popular</h3>
+                {% for p in most_popular %}
+                    <a href="{{ p.get_absolute_url }}" class="sidebar-link">
+                        {{ p.title }}
+                    </a>
+            {% endfor %}
+            </div>
+
+            <div class="popular-posts">
+                <h3 class="sidebar-header">Recent Posts</h3>
+                {% for r in most_popular %}
+                    <a href="{{ r.get_absolute_url }}" class="sidebar-link">
+                        {{ r.title }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+</div>

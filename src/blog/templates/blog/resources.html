@@ -1,0 +1,78 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech{% endblock %}
+
+{% block content %}
+    {% include "blog/includes/detail_header.html" %}
+
+    <div id="resources-container">
+        <div id="resources-content">
+                
+            <section id="resources-code-snippets" class="resources-section">
+                <div class="resources-section-header">
+                    <ion-icon name="cog"></ion-icon><h2>Code Snippets</h2><ion-icon name="cog"></ion-icon>
+                </div>
+                
+                <p id="resources-code-snip-p">I've developed and curated some code snippets for everyone's use! The aim for these is to be short, sweet, and simple.
+                        I want anyone to be able to grab these and be able to use them and build on top of them in their own sites without having to 
+                        labor through a bunch of code. I try to comment as much as I can to describe how each part works, so try them out!
+                </p>
+
+                <ul id="code-snip-list">
+                    <li><a href="https://codepen.io/bradyontech/pen/gyqGNz">CSS only expanding search bar</a></li>
+                    <li><a href="https://codepen.io/bradyontech/pen/rbRBMP">Animated underline on hover</a></li>
+                    <li><a href="https://codepen.io/bradyontech/pen/mgvBLB">Image title overlay on hover</a></li>
+                </ul>
+
+                <div id="snippet-footer">For more snippets, checkout my <a href="https://codepen.io/bradyontech/" target="_blank">codepen</a>!</div>
+            </section>
+
+            <section class="resources-section explained-all-posts resources-gray">
+                <div class="resources-section-header">
+                    <ion-icon name="color-wand"></ion-icon><h2>Over-Explained</h2><ion-icon name="color-wand"></ion-icon>
+                </div>
+
+                <p id="over-explained-p">Each post below is a mini-blog post which (over)explains one specific topic until full understanding.
+                    This allows for the larger blog posts and tutorials to keep from getting side-tracked on something specific,
+                    as well as allowing readers a quick and easy access to specific topics explained at depth.</p>
+                
+                {% if explained %}
+                    {% for e in explained %}
+                        <p class="explained-post"><a href="{{ e.get_absolute_url }}">{{ e.title }}</a><span class="explained-posts-date">{{ e.created }}</span></p>
+                    {% endfor %}
+                {% else %}
+                    <p id="resources-coming-soon">Coming Soon!</p>
+                {% endif %}
+            </section>
+
+            <section class="resources-section">
+                <div class="resources-section-header">
+                    <ion-icon name="paper-plane"></ion-icon><h2>Resources</h2><ion-icon name="paper-plane"></ion-icon>
+                </div>
+
+                <div>
+
+                    {% for topic in resources_topics %}
+                        <div class="resources-topic-header">
+                            <h3>{{ topic.title }}</h3><ion-icon name="{{ topic.icon_name }}"></ion-icon>
+                        </div>
+                    
+                        {% for content in resources_content %}
+                            {% if content.topic.title == topic.title %}
+                                <div class="resources-topic-content">
+                                    <div>
+                                        <a href="{{ content.link }}" target="_blank">{{ content.name }}</a>
+                                        - {{ content.description }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+
+    {% include "blog/includes/footer.html" %}
+{% endblock %}

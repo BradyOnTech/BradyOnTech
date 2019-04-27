@@ -1,0 +1,59 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech{% endblock %}
+
+{% block content %}
+   <header>
+       <a class="header-link" href="/">
+            <h1 class="bot-header">B</h1><img class="robot" src='{% static "img/robot-color.svg" %}'>
+            <h1 class="bot-header">o</h1><img class="robot" src='{% static "img/robot-color.svg" %}'>
+            <h1 class="bot-header">T</h1>
+        </a>
+        
+        <div class="detail-header-box">
+            <ul id="detail-nav">
+                <a href="/blog/archive" class="animated-link"><li>archive</li></a>
+                <a href="/resources" class="animated-link"><li>resources</li></a>
+            </ul>
+            
+            <span id="detail-sitename"><a href="/" style="text-decoration: none; color: black;">Welcome to BradyOnTech</a></span>
+    
+            <!--Search Bar-->
+            <form id="detail-search-form" action="/search" method="GET">
+                <input type="text" placeholder="Search..." name="q">
+                <span type="submit" id="search-icon-container">
+                    <button type="submit" id="submit-button">
+                        <ion-icon name="search" size="small" id="search-btn"></ion-icon>
+                    </button>
+                </span>
+            </form>
+        </div>
+
+        <div class="mobile-header-box">
+            <span id="detail-sitename"><a href="/" style="text-decoration: none; color: black;">Welcome to BradyOnTech</a></span>
+        </div>
+        
+    </header>
+
+    <div class="container">
+        <div class="content-container">
+            {% for post in posts %}
+                <div class="content">
+                    <h2 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                    <h4 class="published">Published on: {{ post.created }}</h4>
+                    <p class="post-content">
+                        {{ post.body|safe|truncatewords:60|linebreaks }}
+                    </p>
+                    <a href="{{ post.get_absolute_url }}" class="read-more">Read More...</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% include "blog/includes/home_sidebar.html" with most_popular=most_popular recent_posts=recent_posts %}
+    </div>
+
+    {% include "blog/includes/pagination.html" with page=posts %}
+
+    {% include "blog/includes/footer.html" %}
+{% endblock %}

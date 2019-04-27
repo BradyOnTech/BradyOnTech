@@ -1,0 +1,45 @@
+{% load static %}
+
+<!-- Icon for mobile sidebar overlay -->
+<div id="mobile-robot-container" onclick="openNav()">
+    <img class="mobile-robot" src='{% static "img/robot-color.svg" %}'>
+    <div id="mobile-robot-text">Click Me</div>
+</div>
+
+<!-- Mobile Overlay -->
+<div id="overlay-nav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">        
+        <form id="search-form" action="/search" method="GET">
+            <input type="text" placeholder="Search..." name="q">
+            <span type="submit" id="search-icon-container">
+                <button type="submit" id="submit-button">
+                    <ion-icon name="search" size="small" id="search-btn"></ion-icon>
+                </button>
+            </span>
+        </form>
+
+        <!-- Navigation -->
+        <ul id="mobile-overlay-navigation">
+            <h3 class="sidebar-header">Navigation</h3>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/archive">Archive</a></li>
+            <li><a href="/resources">Resources</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+
+        <div class="recent-posts">
+            <h3 class="sidebar-header">Recent Posts</h3>
+            {% for r in recent_posts %}
+                <a href="{{ r.get_absolute_url }}" class="sidebar-link">{{ r.title }}</a>
+            {% endfor %}
+        </div>
+        
+        <div class="popular-posts">
+            <h3 class="sidebar-header">Most Popular</h3>
+            {% for p in most_popular %}
+                <a href="{{ p.get_absolute_url }}" class="sidebar-link">{{ p.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

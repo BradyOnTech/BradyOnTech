@@ -1,0 +1,64 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech{% endblock %}
+
+{% block content %}
+    {% include "blog/includes/detail_header.html" %}
+
+    <div class="content-container">
+        <div class="archive-content">
+            {% for s in series %}
+                <div class="archive-card-wrapper">
+                    <a href="{{ s.get_absolute_url }}">
+                    <div class="archive-card-container">
+
+                        {% if s.image.url == '/media/default.jpg' %}
+                            <div class="archive-card-top" 
+                                style="background-image: url( {{ s.alter_img_url }} );
+                                       background-position: center;
+                                       background-repeat: no-repeat;">
+                            </div>
+                        {% elif s.image.url != '/media/default.jpg' %}
+                            <div class="archive-card-top" 
+                                style="background-image: url( {{ s.image.url }} );
+                                       background-position: center;
+                                       background-repeat: no-repeat;">
+                            </div>
+                        {% endif %}
+
+                        
+                        <div class="archive-card-bottom">
+                            <div class="archive-card-left">
+                                <a id="archive-series-title" href=" {{ s.get_absolute_url }}">
+                                    <div class="archive-card-details">
+                                    <h1 id="card-title">{{ s.name }}</h1>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    
+                    <div class="archive-card-inside">
+                        <div class="archive-card-info-icon">
+                            <ion-icon name="information-circle-outline" id="info-icon"></ion-icon>
+                        </div>
+                        <div class="archive-card-info-contents">
+                            {{ s.description|safe }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="archive-all-posts">
+            <h2 id="archive-all-header">All of my Blog Posts</h2>
+            {% for p in posts %}
+                <p><a href="{{ p.get_absolute_url }}">{{ p.title }}</a><span class="archive-posts-date">{{ p.created }}</span></p>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% include "blog/includes/footer.html" %}
+{% endblock %}

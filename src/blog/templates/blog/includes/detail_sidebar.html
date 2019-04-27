@@ -1,0 +1,55 @@
+{% load static %}
+
+<div class="detail-sidebar sidebar">
+    
+        {% if post.series.slug == "general" %}
+            <div class="desktop-sidebar" style="margin-top: 11rem;">
+                <div class="popular-posts">
+                    <h3 class="sidebar-header">Most Popular</h3>
+                    {% for p in most_popular %}
+                        <a href="{{ p.get_absolute_url }}" class="sidebar-link">
+                            {{ p.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+                
+                <div class="popular-posts">
+                    <h3 class="sidebar-header">Recent Posts</h3>
+                    {% for r in recent_posts %}
+                        <a href="{{ r.get_absolute_url }}" class="sidebar-link">
+                            {{ r.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>    
+        {% else %}
+            <div class="desktop-sidebar" style="margin-top: 13rem;">
+                <div class="related-posts">
+                    <h3 class="sidebar-header">
+                        <a href="/blog/{{ post.series.category.slug }}/{{ post.series.slug }}">{{ post.series }} Series</a>
+                    </h3>
+                    {% for p in related_posts %}
+                        <a href="{{ p.get_absolute_url }}" class="sidebar-link">{{ p.title }}</a>
+                    {% endfor %}
+                </div>
+                <div class="popular-posts">
+                    <h3 class="sidebar-header">Most Popular</h3>
+                    {% for p in most_popular %}
+                        <a href="{{ p.get_absolute_url }}" class="sidebar-link">
+                            {{ p.title }}
+                        </a>
+                {% endfor %}
+                </div>
+        
+                <div class="popular-posts">
+                    <h3 class="sidebar-header">Recent Posts</h3>
+                    {% for r in recent_posts %}
+                        <a href="{{ r.get_absolute_url }}" class="sidebar-link">
+                            {{ r.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

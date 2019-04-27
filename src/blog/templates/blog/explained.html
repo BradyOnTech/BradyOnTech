@@ -1,0 +1,25 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech - {{ post.title }}{% endblock %}
+
+{% block content %}
+    {% include "blog/includes/detail_header.html" %}
+    {% include "blog/includes/progress.html" %}
+    <div class="detail-container">
+        <div class="detail-content">
+            <h1>{{ post.title }}</h1>
+            <h4 class="published">Published on: {{ post.created }}</h4>
+            <h4 class="published">Author: <a href="#">{{ post.author }}</a></h4>
+
+            <div class="post-content">
+                {{ post.body|safe|linebreaks }}
+            </div>
+        </div>
+
+        {% include "blog/includes/resources_sidebar.html" with series=series most_popular=most_popular recent_posts=recent_posts %}
+
+    </div>
+    
+        {% include "blog/includes/footer.html" %}
+{% endblock %}

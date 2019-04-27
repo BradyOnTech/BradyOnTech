@@ -1,0 +1,24 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech{% endblock %}
+
+{% block content %}
+    {% include "blog/includes/detail_header.html" %}
+
+    <div class="about-container">
+        <a href="#" target="_blank"><img id="about-img" src='{% static "img/profile_pic_crop.png" %}'></a>
+        <p class="about-content">Sigh, another tech blog… Alas, it is. BUT, this is my corner of the internet and BradyOnTech is a space for me to transfer my thoughts and learnings, primarily revolving around programming and technology. </p>
+        <p class="about-content"></p>
+        <p class="about-content">I'm a self-taught developer and I know the struggle of learning to program. The premise of my vision for this site is to provide <u>over-explained</u> and <u>useful</u> tutorials and posts. I understand the rabbit hole that learning to program can spur. My goal is to fully explain every aspect, so if you embrace the learning process, you won't leave wondering <i>"How in the world does this bit of code actually work?"</i>.</p>
+        <p class="about-content">So thanks for coming to BradyOnTech! I'm Brady, and I designed and developed this site because I'm passionate about programming, learning, teaching, and technology. 
+            I'm based out of Denver, Colorado by way of the great state of Iowa. If you're looking for my resume, you can find that <a id="about-resume-link" href="#" target="_blank">here</a>.
+            I hope you enjoy the content I create. If you have any questions about anything, please feel free to contact me at any of the social media accounts located in the footer.
+        </p>
+        <ul id="about-social">
+                <li><a href="#" target="_blank"><ion-icon name="contact"></ion-icon></a></li>
+        </ul>
+    </div>
+
+    {% include "blog/includes/footer.html" %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech - {{ post.title }}{% endblock %}
+
+{% block content %}
+{% include "blog/includes/detail_header.html" %}
+
+<div class="error-page">
+    <span id="error-header">Whoops!</span>
+    <p>Well, this is embarrassing...</p>
+    <div id="robot-error-container">
+        <img id="error-moving-robot" class="robot" src='{% static "img/robot-color.svg" %}'>
+    </div>
+    <div>We're getting a 404 error, which means you might have accidentally went to a page which doesn't exist, or doesn't exist anymore.</div>
+    <p>Please feel free to look around the rest of the site though!</p>
+    <p>If you're having issues, please reach out to me at any of the social medias in the footer.</p>
+</div>
+
+{% include "blog/includes/footer.html" %}
+{% endblock %}

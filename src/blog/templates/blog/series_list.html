@@ -1,0 +1,35 @@
+{% extends "blog/base_header.html" %}
+{% load static %}
+
+{% block title %}BradyOnTech{% endblock %}
+
+{% block content %}
+    {% include "blog/includes/detail_header.html" %}
+
+    <div class="content-container">
+        <div class="series-content">
+            <h2 class="post-title series-title">{{ series.name }} Series</h2>
+            <ul id="series-ul">
+            {% if posts %}
+                {% for post in posts %}
+                    <div id="series-post">
+                        <li class="series-post-list">
+                            <a href="{{ post.get_absolute_url }}" class="animated-link animated-link-blue" style="color: #3519F7">{{ post.title }}</a>
+                        </li>
+                        <p class="post-content">
+                            {{ post.body|safe|truncatewords:100|linebreaks }}
+                        </p>
+                        <a href="{{ post.get_absolute_url }}" class="read-more" id="series-read-more">Read More...</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div id="series-post">
+                    Coming Soon!
+                </div>
+            {% endif %}
+            </ul>
+
+        </div>
+
+        {% include "blog/includes/footer.html" %}
+{% endblock %}

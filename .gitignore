@@ -1,0 +1,6 @@
+env/
+whoosh_index/
+__pycache__
+.vscode
+migrations/
+db.sqlite3
