@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,13 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('../env/secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
+with open('env/secret_key.txt') as f:
+	SECRET_KEY = f.read().strip()
+#SECRET_KEY = '89xu8#ds&f2twyqs9@6z5z2*_*)27$za9xwscf$yxr#*$4yh1='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.bradyontech.com', 'bradyontech.com']
 
 #Sitemap
 SITE_ID = 1
@@ -116,12 +118,14 @@ HAYSTACK_CONNECTIONS = {
 
 
 # Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-# SQLite3
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	'ENGINE': 'django.db.backends.postgresql_psycopg2',
+	'NAME': config('DB_NAME'),
+	'USER': config('DB_USER'),
+	'PASSWORD': config('DB_PASS'),
+	'HOST': '',
+	'PORT': '',
     }
 }
 
