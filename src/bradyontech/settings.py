@@ -22,7 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 with open('env/secret_key.txt') as f:
 	SECRET_KEY = f.read().strip()
-#SECRET_KEY = '89xu8#ds&f2twyqs9@6z5z2*_*)27$za9xwscf$yxr#*$4yh1='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
