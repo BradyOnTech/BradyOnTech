@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'whoosh',
     'haystack',
+    'filebrowser',
 ]
 
 MIDDLEWARE = [
