@@ -20,12 +20,28 @@ def post_list_home(request):
     recent_posts = Post.published.all().order_by('-published_date')[:4]
     return render(request, 'blog/post_list_home.html', {'posts': posts, 'page': page, 'most_popular': most_popular, 'recent_posts': recent_posts} )
 
+def get_prev_and_next_items(target, items):
+    ''' To get previous and next objects from QuerySet '''
+    found = False
+    prev_post = None
+    next_post = None
+    for item in items:
+        if found:
+            next_post = item
+            break
+        if item.id == target.id:
+            found = True
+            continue
+        prev_post = item
+    return (prev_post, next_post)
+
 def post_detail(request, category, series, slug):
     post = Post.published.get(slug=slug)
+    prev_post, next_post = get_prev_and_next_items(post, Post.published.filter(series__slug=series).order_by('-published_date'))
     related_posts = Post.published.filter(series__slug=series).order_by('published_date')
     most_popular = Post.published.filter(most_popular=True)
     recent_posts = Post.published.all().order_by('-published_date')[:4]
-    return render(request, 'blog/post_detail.html', {'post': post, 'related_posts': related_posts, 'most_popular': most_popular, 'recent_posts': recent_posts})
+    return render(request, 'blog/post_detail.html', {'post': post, 'prev_post': prev_post, 'next_post': next_post, 'related_posts': related_posts, 'most_popular': most_popular, 'recent_posts': recent_posts})
 
 def series_list(request, category, series):
     siri = Series.objects.get(slug=series)

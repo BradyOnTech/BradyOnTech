@@ -224,6 +224,20 @@ header {
     border-bottom: solid 1px #3519F7;
 }
 
+.detail-prev-next {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.detail-prev-next-link {
+    color: #3519F7;
+    text-decoration: none;
+}
+
+.detail-prev-next-span {
+    padding: 0 1rem;
+}
+
 
 /*********/
 /*Sidebar*/
@@ -1047,6 +1061,11 @@ footer div ul li a:hover {
         display: flex;
         grid-template-columns: initial;
         grid-gap: initial;
+    }
+
+    .detail-prev-next-span {
+        display: block;
+        padding: 1rem 0;
     }
 
     #mobile-robot-container {

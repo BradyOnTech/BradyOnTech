@@ -18,6 +18,20 @@
             <div class="post-content">
                 {{ post.body|safe|linebreaks }}
             </div>
+
+            <div class="detail-prev-next">
+                {% if prev_post %}
+                    <span class="detail-prev-next-span">
+                        Previous Post: <a class="detail-prev-next-link" href="{{ prev_post.get_absolute_url }}">{{ prev_post.title }}</a> 
+                    </span>
+                {% endif %}    
+                <img class="robot" src='{% static "img/robot-color.svg" %}'>
+                {% if next_post %}
+                    <span class="detail-prev-next-span">
+                        Next Post: <a class="detail-prev-next-link" href="{{ next_post.get_absolute_url }}">{{ next_post.title }}</a>
+                    </span>
+                {% endif %}
+            </div>
         </div>
 
         {% include "blog/includes/detail_sidebar.html" with related_posts=related_posts most_popular=most_popular %}
